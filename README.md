@@ -1,6 +1,13 @@
 # About
 
-A script to optimize XGBoost model by scikit-optimize.
+A sample script to optimize XGBoost model by scikit-optimize.
+
+# Usage
+
+```
+pip install -r requirements.txt
+python optimize.py
+```
 
 # References
 
