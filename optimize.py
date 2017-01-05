@@ -9,12 +9,12 @@ space_list = [
     {
         'keys': ['max_depth', 'min_child_weight'],
         'dimensions': [(3, 10), (1, 6)],
-        'x0': [5, 1] ,
+        'x0': [5, 1],
     },
     {
         'keys': ['gamma', 'subsample', 'colsample_bytree', 'reg_alpha'],
         'dimensions': [(0.0, 0.5), (0.6, 1.0), (0.6, 1.0), (1e-5, 100, 'log')],
-        'x0': [0.0, 0.8, 0.8, 0.1] ,
+        'x0': [0.0, 0.8, 0.8, 0.1],
     },
 ]
 
@@ -37,8 +37,10 @@ def optimize(dtrain):
 
     for space in space_list:
         obj = create_objective(dtrain, params, space['keys'])
-        res = gp_minimize(func=obj, dimensions=space['dimensions'], x0=space['x0'], n_calls=20, random_state=1)
-        params= dict(**params, **dict(zip(space['keys'], res.x)))
+        res = gp_minimize(
+            func=obj, dimensions=space['dimensions'],
+            x0=space['x0'], n_calls=20, random_state=1)
+        params = dict(**params, **dict(zip(space['keys'], res.x)))
 
     return params
 
